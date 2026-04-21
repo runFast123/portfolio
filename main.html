@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aman Dubey | Python Developer & ML Engineer</title>
+    <meta name="description" content="Portfolio of Aman Dubey, a Results-driven Computer Science graduate and Python Developer specializing in Machine Learning and Data Analytics.">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://amandubey.dev/">
+    <meta property="og:title" content="Aman Dubey | Python Developer & ML Engineer">
+    <meta property="og:description" content="Portfolio of Aman Dubey, a Results-driven Computer Science graduate and Python Developer specializing in Machine Learning and Data Analytics.">
+    <meta property="og:image" content="https://amandubey.dev/og-image.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://amandubey.dev/">
+    <meta property="twitter:title" content="Aman Dubey | Python Developer & ML Engineer">
+    <meta property="twitter:description" content="Portfolio of Aman Dubey, a Results-driven Computer Science graduate and Python Developer specializing in Machine Learning and Data Analytics.">
+    <meta property="twitter:image" content="https://amandubey.dev/og-image.png">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Custom Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        void: '#030304',
+                        surface: '#0F1115',
+                        muted: '#94A3B8',
+                        border: '#1E293B',
+                        primary: '#F7931A',
+                        secondary: '#EA580C',
+                        gold: '#FFD600',
+                    },
+                    fontFamily: {
+                        heading: ['Space Grotesk', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    backgroundImage: {
+                        'gradient-primary': 'linear-gradient(to right, #EA580C, #F7931A)',
+                        'gradient-text': 'linear-gradient(to right, #F7931A, #FFD600)',
+                    },
+                    animation: {
+                        'float': 'float 8s ease-in-out infinite',
+                        'spin-slow': 'spin 10s linear infinite',
+                        'spin-reverse': 'spin 15s linear infinite reverse',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        /* Spotlight Effect for Cards */
+        .effect-card {
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .effect-card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(
+                800px circle at var(--x, 50%) var(--y, 50%),
+                rgba(247, 147, 26, 0.15),
+                transparent 40%
+            );
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.5s;
+            pointer-events: none;
+        }
+        .effect-card.hovering::before {
+            opacity: 1;
+        }
+        
+        /* Scroll Progress Bar */
+        #scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(to right, #EA580C, #FFD600);
+            z-index: 100;
+            width: 0%;
+            transition: width 0.1s;
+        }
+    </style>
+</head>
+<body class="bg-void text-white font-body overflow-x-hidden selection:bg-primary/30 selection:text-white">
+
+    <!-- Scroll Progress Bar -->
+    <div id="scroll-progress"></div>
+
+    <!-- Background Elements -->
+    <div class="fixed inset-0 z-0 pointer-events-none">
+        <div class="absolute inset-0 bg-grid-pattern opacity-40"></div>
+        <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-secondary/10 rounded-full blur-[120px]"></div>
+        <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px]"></div>
+    </div>
+
+    <div class="fixed top-4 left-6 z-[70]">
+        <a href="#" class="font-heading font-bold text-2xl md:text-3xl tracking-tight hover:text-primary transition-colors">
+            Aman <span class="text-primary">Dubey</span>
+        </a>
+    </div>
+
+    
+
+    <div id="anime-navbar" class="hidden md:block fixed top-5 left-0 right-0 z-[60]">
+        <div class="flex justify-center">
+            <div class="anime-navbar relative flex items-center gap-2 px-2 py-2 rounded-full">
+                <a href="#about" class="anime-nav-item font-mono text-xs md:text-sm uppercase tracking-widest">01. ABOUT</a>
+                <a href="#skills" class="anime-nav-item font-mono text-xs md:text-sm uppercase tracking-widest">02. SKILLS</a>
+                <a href="#workflow" class="anime-nav-item font-mono text-xs md:text-sm uppercase tracking-widest">03. PROCESS</a>
+                <a href="#projects" class="anime-nav-item font-mono text-xs md:text-sm uppercase tracking-widest">04. WORK</a>
+                <a href="#experience" class="anime-nav-item font-mono text-xs md:text-sm uppercase tracking-widest">05. EXP</a>
+                <a href="#github-stats" class="anime-nav-item font-mono text-xs md:text-sm uppercase tracking-widest">06. STATS</a>
+                <a href="#contact" class="anime-nav-item font-mono text-xs md:text-sm uppercase tracking-widest">07. CONTACT</a>
+                <span class="anime-indicator"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Navbar -->
+    <div id="anime-navbar-mobile" class="md:hidden fixed bottom-6 left-4 right-4 z-[60]">
+        <div class="anime-navbar relative flex items-center justify-between px-6 py-4 rounded-full bg-surface/90 backdrop-blur-md border border-white/10 shadow-2xl">
+            <a href="#about" class="mobile-nav-item text-muted hover:text-primary transition-colors"><i data-lucide="user" class="w-5 h-5"></i></a>
+            <a href="#skills" class="mobile-nav-item text-muted hover:text-primary transition-colors"><i data-lucide="cpu" class="w-5 h-5"></i></a>
+            <a href="#workflow" class="mobile-nav-item text-muted hover:text-primary transition-colors"><i data-lucide="git-branch" class="w-5 h-5"></i></a>
+            <a href="#projects" class="mobile-nav-item text-muted hover:text-primary transition-colors"><i data-lucide="code" class="w-5 h-5"></i></a>
+            <a href="#experience" class="mobile-nav-item text-muted hover:text-primary transition-colors"><i data-lucide="briefcase" class="w-5 h-5"></i></a>
+            <a href="#contact" class="mobile-nav-item text-muted hover:text-primary transition-colors"><i data-lucide="mail" class="w-5 h-5"></i></a>
+        </div>
+    </div>
+
+    <!-- Pixel Trail Overlay -->
+    <div id="pixel-trail" class="fixed inset-0 pointer-events-none z-[5]"></div>
+
+    <!-- Hero Section -->
+    <section id="hero-root" class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <div id="hero-bg" class="absolute inset-0 hero-blur">
+            <div class="absolute inset-0 [background:radial-gradient(120%_80%_at_50%_50%,_transparent_40%,_black_100%)]"></div>
+        </div>
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center relative z-10">
+            <div class="space-y-6">
+                <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary font-mono text-xs tracking-wider">
+                    <span class="relative flex h-2 w-2">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                    </span>
+                    <span>AVAILABLE FOR WORK</span>
+                </div>
+                
+                <h1 id="hero-title" class="anim-up font-heading font-bold text-5xl md:text-7xl leading-tight">
+                    Building <span class="bg-gradient-text bg-clip-text text-transparent">Digital Intelligence</span>
+                </h1>
+                
+                <p id="hero-desc" class="anim-up text-muted text-lg md:text-xl max-w-lg leading-relaxed">
+                    Results-driven Computer Science graduate & Python Developer. Crafting scalable ML solutions and data-driven architectures in the digital void.
+                </p>
+                
+                <div id="hero-ctas" class="flex flex-wrap gap-4 pt-4">
+                    <a href="#projects" class="group relative px-8 py-3 rounded-full bg-gradient-primary text-white font-bold tracking-wider shadow-[0_0_20px_-5px_rgba(234,88,12,0.5)] hover:scale-105 hover:shadow-[0_0_30px_-5px_rgba(247,147,26,0.6)] transition-all duration-300">
+                        <span class="scramble font-mono tracking-widest uppercase" data-text="VIEW WORK">VIEW WORK</span>
+                    </a>
+                    <a href="#contact" class="px-8 py-3 rounded-full border border-white/20 text-white font-medium hover:bg-white/10 hover:border-white transition-all duration-300">
+                        CONTACT ME
+                    </a>
+                    <a href="#projects" id="magnet-btn" class="magnet-button relative px-8 py-3 rounded-full border border-primary/50 text-primary hover:bg-primary/10 transition-all duration-300 overflow-visible">
+                        <span class="relative w-full inline-flex items-center justify-center gap-2">
+                            <i data-lucide="magnet" class="w-4 h-4"></i>
+                            <span class="font-mono tracking-wide">HOVER ME</span>
+                        </span>
+                    </a>
+                </div>
+
+                <div class="pt-8 flex items-center space-x-6 text-muted">
+                    <a href="https://www.linkedin.com/in/aman-dubey-187695250/" target="_blank" class="hover:text-primary transition-colors"><i data-lucide="linkedin"></i></a>
+                    <a href="mailto:ad2003583@gmail.com" class="hover:text-primary transition-colors"><i data-lucide="mail"></i></a>
+                    <div class="h-px w-12 bg-white/20"></div>
+                    <span class="font-mono text-sm">MUMBAI, INDIA</span>
+                </div>
+            </div>
+
+            <!-- 3D Orb Animation Area -->
+            <div class="relative h-[400px] md:h-[600px] flex items-center justify-center animate-float">
+                <!-- Outer Ring -->
+                <div class="absolute w-[300px] h-[300px] md:w-[450px] md:h-[450px] border border-primary/20 rounded-full animate-spin-slow"></div>
+                <div class="absolute w-[300px] h-[300px] md:w-[450px] md:h-[450px] border border-transparent border-t-primary/60 rounded-full animate-spin-slow"></div>
+                
+                <!-- Inner Ring -->
+                <div class="absolute w-[200px] h-[200px] md:w-[300px] md:h-[300px] border border-gold/20 rounded-full animate-spin-reverse"></div>
+                <div class="absolute w-[200px] h-[200px] md:w-[300px] md:h-[300px] border border-transparent border-b-gold/60 rounded-full animate-spin-reverse"></div>
+                
+                <!-- Core -->
+                <div class="absolute w-32 h-32 bg-gradient-primary rounded-full blur-2xl opacity-20"></div>
+                <div class="absolute w-20 h-20 bg-surface border border-primary/50 rounded-full flex items-center justify-center shadow-[0_0_50px_rgba(247,147,26,0.4)] z-10">
+                    <i data-lucide="code-2" class="text-primary w-8 h-8"></i>
+                </div>
+
+                <div id="orbit-container" class="absolute inset-0">
+                    <div class="orbit-ring ring-cyan" style="--radius:100px"></div>
+                    <div class="orbit-ring ring-purple" style="--radius:180px"></div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Ticker -->
+    <div class="border-y border-white/5 bg-surface/30 backdrop-blur-sm" id="stats-section">
+        <div class="max-w-7xl mx-auto px-6 py-8 grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div class="text-center">
+                <div class="font-heading font-bold text-3xl md:text-4xl text-white counter" data-target="30" data-suffix="%">0%</div>
+                <div class="font-mono text-xs text-primary mt-1">EFFICIENCY BOOST</div>
+            </div>
+            <div class="text-center">
+                <div class="font-heading font-bold text-3xl md:text-4xl text-white counter" data-target="100" data-suffix="K+">0</div>
+                <div class="font-mono text-xs text-primary mt-1">DAILY RECORDS</div>
+            </div>
+            <div class="text-center">
+                <div class="font-heading font-bold text-3xl md:text-4xl text-white counter" data-target="22" data-suffix="+">0</div>
+                <div class="font-mono text-xs text-primary mt-1">PROJECTS COMPLETED</div>
+            </div>
+            <div class="text-center">
+                <div class="font-heading font-bold text-3xl md:text-4xl text-white counter" data-target="15" data-suffix="+">0</div>
+                <div class="font-mono text-xs text-primary mt-1">HOURS SAVED/WEEK</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row gap-16">
+                <div class="md:w-1/2">
+                    <h2 class="font-heading font-bold text-3xl md:text-4xl mb-6 flex items-center">
+                        <span class="text-primary mr-2">01.</span> About Me
+                    </h2>
+                    <div class="space-y-4 text-muted leading-relaxed text-lg">
+                        <p>
+                            I am a <span class="text-white font-medium">Computer Science graduate</span> and Python Developer based in Mumbai, passionate about bridging the gap between raw data and actionable intelligence.
+                        </p>
+                        <p>
+                            Currently working at <span class="text-primary">MCM BPO</span>, I specialize in building scalable automation solutions and machine learning pipelines. My work involves processing massive datasets, optimizing database performance, and creating intuitive dashboards that empower stakeholders to make data-driven decisions.
+                        </p>
+                        <p>
+                            With a strong foundation in <span class="text-white font-medium">AI/ML technologies</span>, I constantly explore new ways to solve real-world problems through code, ensuring security, efficiency, and precision in every line I write.
+                        </p>
+                    </div>
+                    
+                    <div class="mt-8 pt-8 border-t border-white/10">
+                        <h3 class="font-mono text-sm text-primary mb-4">EDUCATION</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="text-white font-bold text-lg">Bachelor of Science in Computer Science</div>
+                                <div class="text-muted text-sm">University of Mumbai | Mar 2022 – Apr 2025</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2 grid grid-cols-1 gap-6">
+                    <!-- Certifications Card -->
+                    <div class="bg-surface border border-white/10 rounded-2xl p-8 hover:border-primary/50 transition-colors group">
+                        <h3 class="font-heading font-semibold text-xl mb-4 flex items-center">
+                            <i data-lucide="award" class="text-primary mr-3"></i> Certifications
+                        </h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-primary mt-1 mr-3 flex-shrink-0"></i>
+                                <div>
+                                    <div class="text-white font-medium">Machine Learning with Python</div>
+                                    <div class="text-muted text-sm">IBM/Coursera</div>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-primary mt-1 mr-3 flex-shrink-0"></i>
+                                <div>
+                                    <div class="text-white font-medium">AITCE AI-ML Virtual Internship</div>
+                                    <div class="text-muted text-sm">Practical AI/ML Training</div>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-primary mt-1 mr-3 flex-shrink-0"></i>
+                                <div>
+                                    <div class="text-white font-medium">AI Tools and ChatGPT Workshop</div>
+                                    <div class="text-muted text-sm">Advanced Prompt Engineering</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-24 bg-surface/30 relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="font-heading font-bold text-3xl md:text-4xl mb-12 text-center">
+                <span class="text-primary">02.</span> Technical Arsenal
+            </h2>
+
+            <!-- Constellation Canvas (Desktop) -->
+            <div id="skills-canvas-container" class="hidden md:block mb-12 relative h-[600px] w-full rounded-2xl border border-white/10 overflow-hidden">
+                <canvas id="skills-canvas"></canvas>
+                <div class="absolute inset-0 pointer-events-none bg-gradient-to-b from-transparent to-surface/50"></div>
+                <div class="absolute bottom-6 left-6 text-xs font-mono text-muted">
+                    INTERACTIVE SKILL GALAXY: HOVER TO EXPLORE
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Skill Card 1 -->
+                <div class="effect-card bg-surface border border-white/10 rounded-2xl p-8">
+                    <div class="w-12 h-12 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center mb-6 text-primary">
+                        <i data-lucide="code" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-heading font-semibold text-xl mb-4">Languages & Core</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-muted">Python</span>
+                        <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-muted">SQL</span>
+                        <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-muted">JavaScript</span>
+                        <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-muted">HTML/CSS</span>
+                    </div>
+                </div>
+
+                <!-- Skill Card 2 -->
+                <div class="effect-card bg-surface border border-white/10 rounded-2xl p-8">
+                    <div class="w-12 h-12 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center mb-6 text-primary">
+                        <i data-lucide="brain-circuit" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-heading font-semibold text-xl mb-4">Machine Learning</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-muted">Scikit-learn</span>
+                        <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-muted">TensorFlow</span>
+                        <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-muted">Keras</span>
+                        <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-muted">NumPy</span>
+                        <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-muted">Pandas</span>
+                    </div>
+                </div>
+
+                <!-- Skill Card 3 -->
+                <div class="effect-card bg-surface border border-white/10 rounded-2xl p-8">
+                    <div class="w-12 h-12 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center mb-6 text-primary">
+                        <i data-lucide="bar-chart-3" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-heading font-semibold text-xl mb-4">Data & Viz</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-muted">Power BI</span>
+                        <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-muted">Tableau</span>
+                        <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-muted">Matplotlib</span>
+                        <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-muted">Seaborn</span>
+                        <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-muted">Plotly</span>
+                    </div>
+                </div>
+
+                <!-- Skill Card 4 -->
+                <div class="effect-card bg-surface border border-white/10 rounded-2xl p-8">
+                    <div class="w-12 h-12 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center mb-6 text-primary">
+                        <i data-lucide="database" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-heading font-semibold text-xl mb-4">Databases</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-muted">MySQL</span>
+                        <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-muted">PostgreSQL</span>
+                        <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-muted">MongoDB</span>
+                        <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-muted">SQLite</span>
+                    </div>
+                </div>
+
+                <!-- Skill Card 5 -->
+                <div class="effect-card bg-surface border border-white/10 rounded-2xl p-8">
+                    <div class="w-12 h-12 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center mb-6 text-primary">
+                        <i data-lucide="wrench" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-heading font-semibold text-xl mb-4">Tools & Cloud</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-muted">Git</span>
+                        <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-muted">Docker</span>
+                        <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-muted">GCP</span>
+                        <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-muted">AWS (Basic)</span>
+                        <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-muted">VS Code</span>
+                    </div>
+                </div>
+
+                <!-- Skill Card 6 -->
+                <div class="effect-card bg-surface border border-white/10 rounded-2xl p-8">
+                    <div class="w-12 h-12 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center mb-6 text-primary">
+                        <i data-lucide="users" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-heading font-semibold text-xl mb-4">Soft Skills</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-muted">Problem Solving</span>
+                        <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-muted">Analytical Thinking</span>
+                        <span class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-muted">Team Collaboration</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Workflow Section -->
+    <section id="workflow" class="py-24 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="font-heading font-bold text-3xl md:text-4xl mb-16 text-center">
+                <span class="text-primary">03.</span> Creative Workflow
+            </h2>
+            <div class="relative max-w-4xl mx-auto">
+                <div class="circuit-line"></div>
+                <div class="space-y-24">
+                    <!-- Step 1 -->
+                    <div class="workflow-step flex items-center gap-8 flex-col md:flex-row text-center md:text-left">
+                        <div class="md:w-1/2 flex justify-end order-2 md:order-1">
+                            <div class="bg-surface border border-white/10 p-6 rounded-xl w-full max-w-md hover:border-primary/50 transition-colors">
+                                <h3 class="font-bold text-xl text-white mb-2">Discovery & Strategy</h3>
+                                <p class="text-muted text-sm">Analyzing requirements, defining the problem scope, and architectural planning.</p>
+                            </div>
+                        </div>
+                        <div class="circuit-node order-1 md:order-2"></div>
+                        <div class="md:w-1/2 order-3">
+                            <div class="text-primary font-mono text-xl">01</div>
+                        </div>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="workflow-step flex items-center gap-8 flex-col md:flex-row-reverse text-center md:text-right">
+                        <div class="md:w-1/2 flex justify-start order-2 md:order-1">
+                            <div class="bg-surface border border-white/10 p-6 rounded-xl w-full max-w-md hover:border-primary/50 transition-colors">
+                                <h3 class="font-bold text-xl text-white mb-2">Development & Logic</h3>
+                                <p class="text-muted text-sm">Writing clean, efficient Python/JS code. Building models and APIs.</p>
+                            </div>
+                        </div>
+                        <div class="circuit-node order-1 md:order-2"></div>
+                        <div class="md:w-1/2 order-3">
+                            <div class="text-primary font-mono text-xl">02</div>
+                        </div>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="workflow-step flex items-center gap-8 flex-col md:flex-row text-center md:text-left">
+                        <div class="md:w-1/2 flex justify-end order-2 md:order-1">
+                            <div class="bg-surface border border-white/10 p-6 rounded-xl w-full max-w-md hover:border-primary/50 transition-colors">
+                                <h3 class="font-bold text-xl text-white mb-2">Optimization & Testing</h3>
+                                <p class="text-muted text-sm">Refining performance, unit testing, and ensuring scalability.</p>
+                            </div>
+                        </div>
+                        <div class="circuit-node order-1 md:order-2"></div>
+                        <div class="md:w-1/2 order-3">
+                            <div class="text-primary font-mono text-xl">03</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-24 relative overflow-hidden">
+        <!-- Background Decor -->
+        <div class="absolute top-0 right-0 opacity-5 -rotate-12 pointer-events-none">
+            <i data-lucide="layers" class="w-[500px] h-[500px] text-white"></i>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <h2 class="font-heading font-bold text-3xl md:text-4xl mb-12 flex items-center">
+                <span class="text-primary mr-2">04.</span> Featured Projects
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                
+                <!-- Project 1 -->
+                <div class="group effect-card bg-surface border border-white/10 rounded-2xl overflow-hidden">
+                    <div class="p-8 pb-0">
+                        <div class="flex justify-between items-start mb-6">
+                            <i data-lucide="folder" class="w-10 h-10 text-primary"></i>
+                            <div class="flex space-x-4">
+                                <a href="#" class="text-muted hover:text-primary"><i data-lucide="github" class="w-5 h-5"></i></a>
+                                <a href="https://app.kedeyo.com/" target="_blank" rel="noopener noreferrer" class="text-muted hover:text-primary"><i data-lucide="external-link" class="w-5 h-5"></i></a>
+                            </div>
+                        </div>
+                        <h3 class="font-heading font-bold text-2xl text-white mb-2 group-hover:text-primary transition-colors">Kedeyo Platform</h3>
+                        <p class="text-muted text-sm mb-4">
+                            Comprehensive AI-powered marketing automation platform offering multi-channel content creation and enterprise-grade tools.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-8">
+                            <span class="text-xs font-mono text-primary">React 18</span>
+                            <span class="text-xs font-mono text-primary">Express</span>
+                            <span class="text-xs font-mono text-primary">PostgreSQL</span>
+                            <span class="text-xs font-mono text-primary">AI</span>
+                        </div>
+                    </div>
+                    <div class="h-2 w-full bg-gradient-primary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="group effect-card bg-surface border border-white/10 rounded-2xl overflow-hidden">
+                    <div class="p-8 pb-0">
+                        <div class="flex justify-between items-start mb-6">
+                            <i data-lucide="bar-chart-2" class="w-10 h-10 text-primary"></i>
+                            <div class="flex space-x-4">
+                                <a href="#" class="text-muted hover:text-primary"><i data-lucide="github" class="w-5 h-5"></i></a>
+                                <a href="https://data.expresspin.com/" target="_blank" rel="noopener noreferrer" class="text-muted hover:text-primary"><i data-lucide="external-link" class="w-5 h-5"></i></a>
+                            </div>
+                        </div>
+                        <h3 class="font-heading font-bold text-2xl text-white mb-2 group-hover:text-primary transition-colors">Predictive Analytics Dashboard</h3>
+                        <p class="text-muted text-sm mb-4">
+                            End-to-end ML pipeline for sales forecasting with 92% accuracy using Random Forest and XGBoost. Visualized via Power BI.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-8">
+                            <span class="text-xs font-mono text-primary">Python</span>
+                            <span class="text-xs font-mono text-primary">Scikit-learn</span>
+                            <span class="text-xs font-mono text-primary">Power BI</span>
+                            <span class="text-xs font-mono text-primary">SQL</span>
+                        </div>
+                    </div>
+                    <div class="h-2 w-full bg-gradient-primary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="group effect-card bg-surface border border-white/10 rounded-2xl overflow-hidden">
+                    <div class="p-8 pb-0">
+                        <div class="flex justify-between items-start mb-6">
+                            <i data-lucide="users" class="w-10 h-10 text-primary"></i>
+                            <div class="flex space-x-4">
+                                <a href="#" class="text-muted hover:text-primary"><i data-lucide="github" class="w-5 h-5"></i></a>
+                                <a href="https://synccrm.expresspin.com/" target="_blank" rel="noopener noreferrer" class="text-muted hover:text-primary"><i data-lucide="external-link" class="w-5 h-5"></i></a>
+                            </div>
+                        </div>
+                        <h3 class="font-heading font-bold text-2xl text-white mb-2 group-hover:text-primary transition-colors">SyncCRM Enterprise</h3>
+                        <p class="text-muted text-sm mb-4">
+                            Multi-role enterprise CRM platform with email automation, IP-based security, and integration with 6 major CRM systems.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-8">
+                            <span class="text-xs font-mono text-primary">Flask</span>
+                            <span class="text-xs font-mono text-primary">SQLAlchemy</span>
+                            <span class="text-xs font-mono text-primary">PostgreSQL</span>
+                        </div>
+                    </div>
+                    <div class="h-2 w-full bg-gradient-primary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="group effect-card bg-surface border border-white/10 rounded-2xl overflow-hidden">
+                    <div class="p-8 pb-0">
+                        <div class="flex justify-between items-start mb-6">
+                            <i data-lucide="pie-chart" class="w-10 h-10 text-primary"></i>
+                            <div class="flex space-x-4">
+                                <a href="#" class="text-muted hover:text-primary"><i data-lucide="github" class="w-5 h-5"></i></a>
+                                <a href="https://campaigns.expresspin.com/" target="_blank" rel="noopener noreferrer" class="text-muted hover:text-primary"><i data-lucide="external-link" class="w-5 h-5"></i></a>
+                            </div>
+                        </div>
+                        <h3 class="font-heading font-bold text-2xl text-white mb-2 group-hover:text-primary transition-colors">Customer Segmentation</h3>
+                        <p class="text-muted text-sm mb-4">
+                            Unsupervised learning model using K-Means to segment customers into 5 distinct groups, boosting engagement by 25%.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-8">
+                            <span class="text-xs font-mono text-primary">Python</span>
+                            <span class="text-xs font-mono text-primary">K-Means</span>
+                            <span class="text-xs font-mono text-primary">Matplotlib</span>
+                        </div>
+                    </div>
+                    <div class="h-2 w-full bg-gradient-primary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+                </div>
+
+            </div>
+            
+            <div class="mt-12 text-center">
+                <a href="archive.html" class="inline-flex items-center space-x-2 text-primary hover:text-white transition-colors font-mono">
+                    <span>VIEW FULL PROJECT ARCHIVE</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- GitHub Intelligence Section -->
+    <section id="github-stats" class="py-24 bg-surface/30">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="font-heading font-bold text-3xl md:text-4xl mb-12 text-center">
+                <span class="text-primary">06.</span> GitHub Intelligence
+            </h2>
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <div class="terminal-dot bg-red-500"></div>
+                    <div class="terminal-dot bg-yellow-500"></div>
+                    <div class="terminal-dot bg-green-500"></div>
+                    <span class="text-xs text-muted ml-2 font-mono">aman@portfolio:~/github-stats</span>
+                </div>
+                <div class="terminal-body font-mono text-sm space-y-4" id="terminal-content">
+                    <div class="cmd-line">fetching user_data...</div>
+                    <!-- Content injected via JS -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-24 bg-surface/30">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="font-heading font-bold text-3xl md:text-4xl mb-12 flex items-center">
+                <span class="text-primary mr-2">05.</span> Experience
+            </h2>
+
+            <div class="relative border-l border-white/10 ml-4 md:ml-6 space-y-12">
+                <!-- Role 1 -->
+                <div class="relative pl-8 md:pl-12">
+                    <div class="absolute -left-[5px] top-2 w-2.5 h-2.5 rounded-full bg-primary shadow-[0_0_10px_rgba(247,147,26,0.8)]"></div>
+                    
+                    <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
+                        <h3 class="font-heading font-bold text-xl text-white">Python Developer</h3>
+                        <span class="font-mono text-sm text-primary">April 2025 – Present</span>
+                    </div>
+                    
+                    <div class="text-muted font-medium mb-4">MCM BPO | Mumbai Metropolitan Region</div>
+                    
+                    <ul class="space-y-2 text-muted text-sm list-disc list-outside ml-4">
+                        <li>Developed and maintained Python-based automation solutions, improving operational efficiency by 30%.</li>
+                        <li>Designed and implemented data pipelines for processing large-scale datasets, handling 100K+ records daily.</li>
+                        <li>Built RESTful APIs using Flask/Django for seamless integration with third-party services.</li>
+                        <li>Optimized database queries and application performance, reducing response time by 40%.</li>
+                        <li>Collaborated with cross-functional teams to deliver scalable software solutions within tight deadlines.</li>
+                        <li><strong class="text-primary">Recognized as Employee of the Month (2x)</strong> for outstanding performance and contribution.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 relative overflow-hidden">
+        <div class="max-w-3xl mx-auto px-6 text-center relative z-10">
+            <div class="inline-block p-4 rounded-2xl bg-white/5 border border-white/10 mb-8">
+                <i data-lucide="message-square" class="w-8 h-8 text-primary"></i>
+            </div>
+            
+            <h2 class="font-heading font-bold text-4xl md:text-5xl mb-6">Let's Build the Future</h2>
+            
+            <p class="text-muted text-lg mb-12">
+                I'm currently looking for new opportunities to leverage my skills in Python and Machine Learning. Whether you have a question or just want to say hi, my inbox is always open.
+            </p>
+            
+            <a href="mailto:ad2003583@gmail.com" class="inline-block px-8 py-4 rounded-full bg-transparent border border-primary text-primary font-bold tracking-wide hover:bg-primary/10 hover:shadow-[0_0_30px_-5px_rgba(247,147,26,0.4)] transition-all duration-300">
+                SAY HELLO
+            </a>
+            
+            <div class="mt-16 flex justify-center space-x-8">
+                <a href="https://www.linkedin.com/in/aman-dubey-187695250/" class="text-muted hover:text-primary transition-colors flex flex-col items-center">
+                    <i data-lucide="linkedin" class="w-6 h-6 mb-2"></i>
+                    <span class="text-xs font-mono">LINKEDIN</span>
+                </a>
+                <a href="mailto:ad2003583@gmail.com" class="text-muted hover:text-primary transition-colors flex flex-col items-center">
+                    <i data-lucide="mail" class="w-6 h-6 mb-2"></i>
+                    <span class="text-xs font-mono">EMAIL</span>
+                </a>
+            </div>
+
+            <div class="mt-20 flex flex-col items-center gap-8">
+                <p class="text-xs font-mono uppercase tracking-[0.2em] text-muted">Rate your experience?</p>
+                <div id="emoji-rating" class="flex flex-col items-center gap-6">
+                    <div class="flex items-center gap-3">
+                        <button class="group relative focus:outline-none" aria-label="Rate 1: Terrible">
+                            <div class="relative flex h-14 w-14 items-center justify-center rounded-2xl transition-all duration-300 ease-out">
+                                <span class="text-3xl transition-all duration-300 ease-out select-none">😔</span>
+                            </div>
+                        </button>
+                        <button class="group relative focus:outline-none" aria-label="Rate 2: Poor">
+                            <div class="relative flex h-14 w-14 items-center justify-center rounded-2xl transition-all duration-300 ease-out">
+                                <span class="text-3xl transition-all duration-300 ease-out select-none">😕</span>
+                            </div>
+                        </button>
+                        <button class="group relative focus:outline-none" aria-label="Rate 3: Okay">
+                            <div class="relative flex h-14 w-14 items-center justify-center rounded-2xl transition-all duration-300 ease-out">
+                                <span class="text-3xl transition-all duration-300 ease-out select-none">😐</span>
+                            </div>
+                        </button>
+                        <button class="group relative focus:outline-none" aria-label="Rate 4: Good">
+                            <div class="relative flex h-14 w-14 items-center justify-center rounded-2xl transition-all duration-300 ease-out">
+                                <span class="text-3xl transition-all duration-300 ease-out select-none">🙂</span>
+                            </div>
+                        </button>
+                        <button class="group relative focus:outline-none" aria-label="Rate 5: Amazing">
+                            <div class="relative flex h-14 w-14 items-center justify-center rounded-2xl transition-all duration-300 ease-out">
+                                <span class="text-3xl transition-all duration-300 ease-out select-none">😍</span>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="relative h-7 w-32">
+                        <div id="emoji-rating-default" class="absolute inset-0 flex items-center justify-center transition-all duration-300 ease-out">
+                            <span class="text-sm font-medium text-muted">Rate us</span>
+                        </div>
+                        <div id="emoji-rating-label" class="absolute inset-0 flex items-center justify-center transition-all duration-300 ease-out opacity-0 blur-md scale-105">
+                            <span class="text-sm font-semibold tracking-wide text-white"></span>
+                        </div>
+                    </div>
+                    <div class="mt-4 h-px w-24 bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Animated Footer -->
+    <section class="relative w-full mt-0 overflow-hidden">
+      <footer class="border-t border-white/5 bg-void mt-20 relative">
+        <div class="max-w-7xl mx-auto min-h-[30rem] md:min-h-[40rem] relative p-4 py-10 flex flex-col justify-between">
+          <div class="flex flex-col mb-12 md:mb-0 w-full">
+            <div class="w-full flex flex-col items-center">
+              <div class="space-y-2 flex flex-col items-center">
+                <div class="flex items-center gap-2">
+                  <span class="text-white text-3xl font-bold">AMAN<span class="text-primary">.DEV</span></span>
+                </div>
+                <p class="text-muted font-semibold text-center w-full max-w-sm px-4">
+                  Python Developer & ML Engineer • Employee of the Month (2×) • Mumbai, India
+                </p>
+              </div>
+
+              <div class="flex mb-8 mt-3 gap-4">
+                <a href="https://www.linkedin.com/in/aman-dubey-187695250/" class="text-muted hover:text-white transition-colors" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                  <div class="w-6 h-6 hover:scale-110 duration-300"><i data-lucide="linkedin"></i></div>
+                </a>
+                <a href="mailto:ad2003583@gmail.com" class="text-muted hover:text-white transition-colors" aria-label="Email">
+                  <div class="w-6 h-6 hover:scale-110 duration-300"><i data-lucide="mail"></i></div>
+                </a>
+              </div>
+
+              <div class="flex flex-wrap justify-center gap-4 text-sm font-medium text-muted max-w-full px-4">
+                <a class="hover:text-white duration-300 hover:font-semibold" href="#about">About</a>
+                <a class="hover:text-white duration-300 hover:font-semibold" href="#skills">Skills</a>
+                <a class="hover:text-white duration-300 hover:font-semibold" href="#projects">Projects</a>
+                <a class="hover:text-white duration-300 hover:font-semibold" href="#experience">Experience</a>
+                <a class="hover:text-white duration-300 hover:font-semibold" href="#contact">Contact</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-20 md:mt-24 flex flex-col gap-2 md:gap-1 items-center justify-center md:flex-row md:items-center md:justify-between px-4 md:px-0">
+            <p class="text-base text-muted text-center md:text-left">
+              &copy; <span id="year"></span> Aman Dubey. All rights reserved.
+            </p>
+            <nav class="flex gap-4">
+              <a href="https://www.linkedin.com/in/aman-dubey-187695250/" target="_blank" class="text-base text-muted hover:text-white transition-colors duration-300 hover:font-medium">
+                Crafted by Aman Dubey
+              </a>
+            </nav>
+          </div>
+        </div>
+
+        <!-- Large background text -->
+        <div 
+          class="bg-gradient-to-b from-white/20 via-white/10 to-transparent bg-clip-text text-transparent leading-none absolute left-1/2 -translate-x-1/2 bottom-40 md:bottom-32 font-extrabold tracking-tighter pointer-events-none select-none text-center px-4"
+          style="font-size: clamp(3rem, 12vw, 10rem); max-width: 95vw;"
+        >
+          AMAN.DEV
+        </div>
+
+        <!-- Bottom logo -->
+        <div class="absolute drop-shadow-[0_0px_20px_rgba(255,255,255,0.2)] bottom-24 md:bottom-20 backdrop-blur-sm rounded-3xl bg-void/60 left-1/2 border-2 border-white/10 flex items-center justify-center p-3 -translate-x-1/2 z-10">
+          <div class="w-12 sm:w-16 md:w-24 h-12 sm:h-16 md:h-24 bg-gradient-to-br from-white to-white/70 rounded-2xl flex items-center justify-center shadow-lg">
+            <i data-lucide="code-2" class="w-8 sm:w-10 md:w-14 h-8 sm:h-10 md:h-14 text-void drop-shadow-lg"></i>
+          </div>
+        </div>
+
+        <!-- Bottom line -->
+        <div class="absolute bottom-32 backdrop-blur-sm h-1 bg-gradient-to-r from-transparent via-white/10 to-transparent w-full left-1/2 -translate-x-1/2"></div>
+
+        <!-- Bottom shadow -->
+        <div class="bg-gradient-to-t from-void via-void/80 blur-[1em] to-void/40 absolute bottom-28 w-full h-24"></div>
+      </footer>
+    </section>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot hidden md:block"></div>
+    <div class="cursor-outline hidden md:block"></div>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-8 right-8 z-50 p-3 rounded-full bg-primary/20 border border-primary text-primary opacity-0 translate-y-10 transition-all duration-300 hover:bg-primary hover:text-white focus:outline-none shadow-[0_0_20px_rgba(247,147,26,0.5)] group" aria-label="Back to top">
+        <i data-lucide="arrow-up" class="w-6 h-6 group-hover:-translate-y-1 transition-transform"></i>
+    </button>
+
+    <script src="script.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

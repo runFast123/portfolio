@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Archive | Aman Dubey</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Custom Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        void: '#030304',
+                        surface: '#0F1115',
+                        muted: '#94A3B8',
+                        border: '#1E293B',
+                        primary: '#F7931A',
+                        secondary: '#EA580C',
+                        gold: '#FFD600',
+                    },
+                    fontFamily: {
+                        heading: ['Space Grotesk', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    backgroundImage: {
+                        'gradient-primary': 'linear-gradient(to right, #EA580C, #F7931A)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Custom Table Styling for "Ledger" Look */
+        .ledger-table th {
+            font-family: 'Space Grotesk', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-size: 0.875rem;
+            color: #F7931A;
+            padding: 1rem;
+            border-bottom: 1px solid rgba(247, 147, 26, 0.2);
+            text-align: left;
+        }
+        .ledger-table td {
+            padding: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            color: #94A3B8;
+        }
+        .ledger-table tr:hover td {
+            background-color: rgba(255, 255, 255, 0.02);
+            color: #fff;
+        }
+        .ledger-table tr:last-child td {
+            border-bottom: none;
+        }
+        .tech-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: #EA580C;
+        }
+    </style>
+</head>
+<body class="bg-void text-white font-body selection:bg-primary/30 selection:text-white">
+
+    <!-- Background Elements -->
+    <div class="fixed inset-0 z-0 pointer-events-none">
+        <div class="absolute inset-0 bg-grid-pattern opacity-40"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="fixed top-0 w-full z-50 backdrop-blur-lg bg-void/80 border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="main.html" class="flex items-center space-x-2 text-muted hover:text-primary transition-colors">
+                <i data-lucide="arrow-left" class="w-5 h-5"></i>
+                <span class="font-mono text-sm">BACK TO HOME</span>
+            </a>
+            <div class="font-heading font-bold text-xl tracking-tight">
+                PROJECT <span class="text-primary">ARCHIVE</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="pt-32 pb-24 px-6 relative z-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-12">
+                <h1 class="font-heading font-bold text-4xl md:text-5xl mb-4">Complete Ledger</h1>
+                <p class="text-muted text-lg max-w-2xl">
+                    A comprehensive list of projects, tools, and platforms engineered for performance and scalability.
+                </p>
+            </div>
+
+            <!-- Table Container -->
+            <div class="relative bg-surface border border-white/10 rounded-2xl overflow-hidden shadow-2xl overflow-x-auto">
+                <div class="border-beam" style="--size:250; --duration:12; --anchor:90; --border-width:1.5; --color-from:#F7931A; --color-to:#FFD600; --delay:-9s;"></div>
+                <table class="w-full ledger-table min-w-[1000px]">
+                    <thead>
+                        <tr>
+                            <th class="w-16">#</th>
+                            <th class="w-1/5">Project</th>
+                            <th class="w-1/4">Purpose</th>
+                            <th class="w-1/6">Tech Stack</th>
+                            <th class="w-1/6">Primary Users</th>
+                            <th>Difficulty</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="font-mono text-primary/50">22</td>
+                            <td class="font-bold text-white">AI Chatbot - n8n Automation</td>
+                            <td>Intelligent multi-entity chatbot system with custom prompt engineering.</td>
+                            <td class="tech-tag">n8n · AI · Custom Logic</td>
+                            <td>Support, Sales</td>
+                            <td><span class="text-purple-400">Expert</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-mono text-primary/50">21</td>
+                            <td class="font-bold text-white">Accounting Software</td>
+                            <td>Complete financial management solution with multi-company support.</td>
+                            <td class="tech-tag">React 18 · Express · PostgreSQL</td>
+                            <td>Accountants, Owners</td>
+                            <td><span class="text-purple-400">Expert</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-mono text-primary/50">20</td>
+                            <td class="font-bold text-white">SyncCRM - Enterprise CRM</td>
+                            <td>Multi-role enterprise CRM platform with email automation & security.</td>
+                            <td class="tech-tag">Flask · SQLAlchemy · PostgreSQL</td>
+                            <td>Admin, Agents</td>
+                            <td><span class="text-purple-400">Expert</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-mono text-primary/50">19</td>
+                            <td class="font-bold text-white">Sales Person Data Report</td>
+                            <td>Detailed sales activity tracking system with advanced filtering.</td>
+                            <td class="tech-tag">Django · jQuery · DataTables</td>
+                            <td>Sales Teams</td>
+                            <td><span class="text-blue-400">Medium</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-mono text-primary/50">18</td>
+                            <td class="font-bold text-white">Summary Sales Report</td>
+                            <td>Executive sales dashboard with expandable views and breakdowns.</td>
+                            <td class="tech-tag">Django · jQuery · DataTables</td>
+                            <td>Managers</td>
+                            <td><span class="text-blue-400">Medium</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-mono text-primary/50">17</td>
+                            <td class="font-bold text-white">Django Form Submission System</td>
+                            <td>Enterprise-grade platform for form management & automation.</td>
+                            <td class="tech-tag">Django 4 · PostgreSQL · SSH</td>
+                            <td>Marketing Ops</td>
+                            <td><span class="text-purple-400">Expert</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-mono text-primary/50">16</td>
+                            <td class="font-bold text-white">Campaign Management Dashboard</td>
+                            <td>Centralized dashboard for monitoring automated marketing campaigns.</td>
+                            <td class="tech-tag">Django · Custom CSS</td>
+                            <td>Campaign Mgrs</td>
+                            <td><span class="text-orange-400">High</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-mono text-primary/50">15</td>
+                            <td class="font-bold text-white">VAPI Call Report (v2)</td>
+                            <td>Enhanced AI voice call analytics with sentiment analysis.</td>
+                            <td class="tech-tag">Django · Bootstrap 5 · Select2</td>
+                            <td>Call Center Teams</td>
+                            <td><span class="text-orange-400">High</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-mono text-primary/50">14</td>
+                            <td class="font-bold text-white">VAPI Call Report (v1)</td>
+                            <td>Comprehensive AI voice call analytics platform with recording storage.</td>
+                            <td class="tech-tag">Django · Bootstrap 5</td>
+                            <td>Managers</td>
+                            <td><span class="text-orange-400">High</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-mono text-primary/50">13</td>
+                            <td class="font-bold text-white">Profitable Leads Dashboard</td>
+                            <td>Advanced dashboard matching leads with revenue opportunities.</td>
+                            <td class="tech-tag">Django · Bootstrap 5</td>
+                            <td>Sales Analysts</td>
+                            <td><span class="text-blue-400">Medium</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-mono text-primary/50">12</td>
+                            <td class="font-bold text-white">Teams Forms Report</td>
+                            <td>Collaboration tool for contact form submissions & tracking.</td>
+                            <td class="tech-tag">Django · jQuery</td>
+                            <td>Team Leads</td>
+                            <td><span class="text-blue-400">Medium</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-mono text-primary/50">11</td>
+                            <td class="font-bold text-white">Kedeyo Platform</td>
+                            <td>Comprehensive AI-powered marketing automation platform.</td>
+                            <td class="tech-tag">React 18 · Express · Tailwind</td>
+                            <td>Marketing Teams</td>
+                            <td><span class="text-purple-400">Expert</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-mono text-primary/50">10</td>
+                            <td class="font-bold text-white">File Processor</td>
+                            <td>Advanced utility extracting content from DOCX, HTML, TXT files.</td>
+                            <td class="tech-tag">FileReader · Docx Parser</td>
+                            <td>All Users</td>
+                            <td><span class="text-orange-400">High</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-mono text-primary/50">9</td>
+                            <td class="font-bold text-white">Content Statistics</td>
+                            <td>Metrics calculator for word count, links, and readability.</td>
+                            <td class="tech-tag">HTML5 · JS</td>
+                            <td>Content Creators</td>
+                            <td><span class="text-green-400">Low</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-mono text-primary/50">8</td>
+                            <td class="font-bold text-white">Keyword Manager</td>
+                            <td>Centralized system for tracking focus keywords and strategies.</td>
+                            <td class="tech-tag">HTML5 · JS</td>
+                            <td>Content Teams</td>
+                            <td><span class="text-green-400">Low</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-mono text-primary/50">7</td>
+                            <td class="font-bold text-white">Meta Description Generator</td>
+                            <td>Smart generator for SEO-friendly descriptions with keywords.</td>
+                            <td class="tech-tag">HTML5 · JS · AI</td>
+                            <td>SEO Specialists</td>
+                            <td><span class="text-blue-400">Medium</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-mono text-primary/50">6</td>
+                            <td class="font-bold text-white">Meta Title Generator</td>
+                            <td>AI-powered generator for SEO-optimized title suggestions.</td>
+                            <td class="tech-tag">HTML5 · JS · AI</td>
+                            <td>SEO Specialists</td>
+                            <td><span class="text-blue-400">Medium</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-mono text-primary/50">5</td>
+                            <td class="font-bold text-white">Blog Content Analyzer</td>
+                            <td>Intelligent analyzer for tone, perspective, and SEO metrics.</td>
+                            <td class="tech-tag">HTML5 · JS</td>
+                            <td>Writers, Editors</td>
+                            <td><span class="text-blue-400">Medium</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-mono text-primary/50">4</td>
+                            <td class="font-bold text-white">Blog Analysis & AI Tool</td>
+                            <td>SEO content optimization platform with AI suggestions.</td>
+                            <td class="tech-tag">HTML5 · File API · JS</td>
+                            <td>Content Creators</td>
+                            <td><span class="text-orange-400">High</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-mono text-primary/50">3</td>
+                            <td class="font-bold text-white">Customer Rates Comparison</td>
+                            <td>Multi-carrier telecom rate comparison & benchmarking tool.</td>
+                            <td class="tech-tag">Custom CSS · AJAX · JS</td>
+                            <td>Pricing Analysts</td>
+                            <td><span class="text-blue-400">Medium</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-mono text-primary/50">2</td>
+                            <td class="font-bold text-white">Neptuna ASR Dashboard</td>
+                            <td>Advanced ASR dashboard with real-time search & export.</td>
+                            <td class="tech-tag">Bootstrap 5.3 · JS</td>
+                            <td>Operations Team</td>
+                            <td><span class="text-blue-400">Medium</span></td>
+                        </tr>
+                        <tr>
+                            <td class="font-mono text-primary/50">1</td>
+                            <td class="font-bold text-white">Hourly PeerEdge ASR</td>
+                            <td>Comprehensive call center ASR monitoring dashboard.</td>
+                            <td class="tech-tag">HTML5 · CSS3 · Django</td>
+                            <td>Managers</td>
+                            <td><span class="text-orange-400">High</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
