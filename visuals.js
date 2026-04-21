@@ -97,4 +97,99 @@
     }, { threshold: 0.6 });
     glitchEls.forEach((el) => go.observe(el));
   }
+
+  // ---------- 6. Scramble text decode on [data-scramble] ----------
+  const scrambleEls = document.querySelectorAll('[data-scramble]');
+  if (scrambleEls.length) {
+    const CHARS = '!<>-_\\/[]{}—=+*^?#01ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const rand = () => CHARS[Math.floor(Math.random() * CHARS.length)];
+
+    const scramble = (el) => {
+      const target = el.textContent.trim();
+      const duration = parseInt(el.dataset.scramble) || 1200;
+      if (prefersReduce) { el.textContent = target; return; }
+      const start = performance.now();
+      const tick = (now) => {
+        const t = Math.min(1, (now - start) / duration);
+        let out = '';
+        for (let i = 0; i < target.length; i++) {
+          const reveal = i / target.length;
+          if (t > reveal + 0.15) out += target[i];
+          else if (target[i] === ' ') out += ' ';
+          else out += rand();
+        }
+        el.textContent = out;
+        if (t < 1) requestAnimationFrame(tick);
+        else el.textContent = target;
+      };
+      requestAnimationFrame(tick);
+    };
+
+    if ('IntersectionObserver' in window) {
+      const so = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) { scramble(entry.target); so.unobserve(entry.target); }
+        });
+      }, { threshold: 0.4 });
+      scrambleEls.forEach((el) => so.observe(el));
+    } else {
+      scrambleEls.forEach(scramble);
+    }
+  }
+
+  // ---------- 7. Cursor-follow ambient glow orb ----------
+  const glow = document.getElementById('cursor-glow');
+  if (glow && !prefersReduce && !('ontouchstart' in window)) {
+    let tx = window.innerWidth / 2, ty = window.innerHeight / 2;
+    let x = tx, y = ty;
+    document.addEventListener('mousemove', (e) => {
+      tx = e.clientX; ty = e.clientY;
+      glow.classList.add('on');
+    });
+    document.addEventListener('mouseleave', () => glow.classList.remove('on'));
+    const loop = () => {
+      x += (tx - x) * 0.12;
+      y += (ty - y) * 0.12;
+      glow.style.transform = `translate(${x}px, ${y}px) translate(-50%, -50%)`;
+      requestAnimationFrame(loop);
+    };
+    loop();
+  }
+
+  // ---------- 8. Live clock + location for HUD ----------
+  const clock = document.getElementById('hud-clock');
+  if (clock) {
+    const pad = (n) => String(n).padStart(2, '0');
+    const update = () => {
+      const d = new Date();
+      clock.textContent = `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())} IST`;
+    };
+    update();
+    setInterval(update, 1000);
+  }
+
+  // ---------- 9. Status ticker rotation ----------
+  const ticker = document.getElementById('status-ticker-text');
+  if (ticker) {
+    const messages = [
+      'LINK: stable',
+      'UPLINK: github.com/runFast123',
+      'LOC: 19.07°N, 72.87°E',
+      'MODE: accepting interviews',
+      'STACK: python / ml / data',
+      'SYS: all subsystems nominal',
+    ];
+    let i = 0;
+    const cycle = () => {
+      ticker.style.opacity = '0';
+      setTimeout(() => {
+        i = (i + 1) % messages.length;
+        ticker.textContent = messages[i];
+        ticker.style.opacity = '1';
+      }, 350);
+    };
+    ticker.textContent = messages[0];
+    ticker.style.transition = 'opacity 350ms ease';
+    setInterval(cycle, 3200);
+  }
 })();

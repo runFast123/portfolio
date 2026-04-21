@@ -712,6 +712,98 @@ body:hover .cursor-outline {
 /* 9. Enhanced magnetic card wrapper */
 .magnetic-wrap { will-change: transform; transition: transform 220ms cubic-bezier(0.2,0.8,0.2,1); }
 
+/* 11. Sci-fi HUD corners + status bar (landing page) */
+.hud-corner {
+  position: fixed;
+  z-index: 50;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: rgba(255, 214, 0, 0.85);
+  pointer-events: none;
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.hud-corner::before {
+  content: "";
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid rgba(247,147,26,0.7);
+}
+.hud-tl { top: 0; left: 0; }
+.hud-tl::before { border-right: none; border-bottom: none; }
+.hud-tr { top: 0; right: 0; flex-direction: row-reverse; text-align: right; }
+.hud-tr::before { border-left: none; border-bottom: none; }
+.hud-bl { bottom: 0; left: 0; }
+.hud-bl::before { border-right: none; border-top: none; }
+.hud-br { bottom: 0; right: 0; flex-direction: row-reverse; text-align: right; }
+.hud-br::before { border-left: none; border-top: none; }
+.hud-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 8px #22c55e;
+  animation: hud-pulse 1.8s ease-in-out infinite;
+  margin-right: 0.4rem;
+}
+@keyframes hud-pulse {
+  50% { opacity: 0.35; transform: scale(0.85); }
+}
+
+.status-ticker {
+  position: fixed;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 50;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: rgba(148,163,184,0.85);
+  padding: 0.5rem 1.2rem;
+  border: 1px solid rgba(247,147,26,0.22);
+  background: rgba(3,3,4,0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 9999px;
+  white-space: nowrap;
+  pointer-events: none;
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+  max-width: 90vw;
+  overflow: hidden;
+}
+.status-ticker .sep { color: rgba(247,147,26,0.45); }
+
+/* 12. Cursor-follow ambient glow orb */
+#cursor-glow {
+  position: fixed;
+  top: 0; left: 0;
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+  background: radial-gradient(circle, rgba(247,147,26,0.22) 0%, rgba(255,214,0,0.10) 25%, transparent 65%);
+  mix-blend-mode: screen;
+  transform: translate(-50%, -50%);
+  transition: opacity 400ms ease;
+  opacity: 0;
+  will-change: transform;
+  filter: blur(12px);
+}
+#cursor-glow.on { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { #cursor-glow { display: none; } }
+@media (hover: none) { #cursor-glow { display: none; } }
+
+/* 13. Scramble decode placeholder */
+.scramble-target { display: inline-block; }
+
 /* 10. Section corner brackets (editorial accent) */
 .section-bracket {
   position: absolute;

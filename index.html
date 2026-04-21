@@ -81,6 +81,31 @@
     <div class="grain-overlay"></div>
     <div class="scanlines-overlay hidden md:block"></div>
 
+    <!-- Ambient cursor glow -->
+    <div id="cursor-glow"></div>
+
+    <!-- HUD corners -->
+    <div class="hud-corner hud-tl">
+        <span><span class="hud-dot"></span>SYS//ONLINE</span>
+    </div>
+    <div class="hud-corner hud-tr">
+        <span id="hud-clock">00:00:00 IST</span>
+    </div>
+    <div class="hud-corner hud-bl">
+        <span>LOC//MUMBAI · IN</span>
+    </div>
+    <div class="hud-corner hud-br">
+        <span>BUILD//v2.0 · REV.2B9</span>
+    </div>
+
+    <!-- Status ticker -->
+    <div class="status-ticker hidden md:flex">
+        <span class="hud-dot"></span>
+        <span id="status-ticker-text">LINK: stable</span>
+        <span class="sep">·</span>
+        <span>press <kbd style="font-family:inherit;padding:1px 6px;border:1px solid rgba(247,147,26,0.3);border-radius:4px;color:#FFD600;">→</kbd> to explore</span>
+    </div>
+
     <!-- Shader Canvas (Background) -->
     <canvas id="shader-canvas" class="absolute inset-0 w-full h-full object-cover touch-none" style="background: black;"></canvas>
 
@@ -91,7 +116,7 @@
         <div class="lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left space-y-6 pointer-events-auto z-20">
             
             <!-- Trust Badge -->
-            <div class="animate-fade-in-down">
+            <div class="animate-fade-in-down" data-magnetic="0.2">
                 <div class="flex items-center gap-2 px-4 py-2 bg-orange-500/10 backdrop-blur-md border border-orange-300/30 rounded-full text-xs md:text-sm">
                     <span class="relative flex h-2 w-2">
                       <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
@@ -107,7 +132,7 @@
                     <span class="glitch" data-text="Aman Dubey">Aman Dubey</span>
                 </h1>
                 <h2 class="text-2xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-yellow-300 via-orange-400 to-red-400 bg-clip-text text-transparent animate-fade-in-up animation-delay-400 pb-2">
-                    Python Developer & ML Engineer
+                    <span data-scramble="1400" class="scramble-target">Python Developer & ML Engineer</span>
                 </h2>
             </div>
             
@@ -119,7 +144,7 @@
             </div>
             
             <!-- CTA Button -->
-            <div class="pt-6 animate-fade-in-up animation-delay-800">
+            <div class="pt-6 animate-fade-in-up animation-delay-800" data-magnetic="0.25">
                 <a href="main.html" class="group relative overflow-hidden inline-flex items-center justify-center h-14 w-64 rounded-full font-semibold text-lg transition-all duration-300 bg-gradient-to-r from-orange-500 to-yellow-500 text-black shadow-lg hover:shadow-orange-500/25 cursor-pointer">
                     <span class="mr-8 transition-opacity duration-500 group-hover:opacity-0">
                         Know about me
