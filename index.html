@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aman Dubey | Python Developer & ML Engineer</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="styles.css">
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -76,6 +77,10 @@
 </head>
 <body class="bg-black overflow-hidden h-screen w-screen relative">
 
+    <!-- Visual overlays -->
+    <div class="grain-overlay"></div>
+    <div class="scanlines-overlay hidden md:block"></div>
+
     <!-- Shader Canvas (Background) -->
     <canvas id="shader-canvas" class="absolute inset-0 w-full h-full object-cover touch-none" style="background: black;"></canvas>
 
@@ -99,7 +104,7 @@
             <!-- Headings -->
             <div class="space-y-2">
                 <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold bg-gradient-to-r from-orange-300 via-yellow-400 to-amber-300 bg-clip-text text-transparent animate-fade-in-up animation-delay-200 leading-tight">
-                    Aman Dubey
+                    <span class="glitch" data-text="Aman Dubey">Aman Dubey</span>
                 </h1>
                 <h2 class="text-2xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-yellow-300 via-orange-400 to-red-400 bg-clip-text text-transparent animate-fade-in-up animation-delay-400 pb-2">
                     Python Developer & ML Engineer
@@ -137,6 +142,7 @@
 
     <!-- Shader Logic -->
     <script src="landing.js"></script>
+    <script src="visuals.js"></script>
     <script>
         lucide.createIcons();
     </script>
