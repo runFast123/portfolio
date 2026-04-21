@@ -660,10 +660,15 @@ body:hover .cursor-outline {
   perspective: 800px;
 }
 .marquee-track {
-  display: flex;
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  flex-direction: row !important;
   gap: 3rem;
   width: max-content;
   animation: marquee-scroll 40s linear infinite;
+}
+.marquee-track > .marquee-chip {
+  flex: 0 0 auto;
 }
 .marquee:hover .marquee-track { animation-play-state: paused; }
 @keyframes marquee-scroll {
@@ -671,10 +676,12 @@ body:hover .cursor-outline {
   100% { transform: translateX(-50%); }
 }
 .marquee-chip {
-  display: inline-flex;
+  display: inline-flex !important;
+  flex-direction: row !important;
   align-items: center;
   gap: 0.6rem;
   padding: 0.7rem 1.3rem;
+  white-space: nowrap;
   border: 1px solid rgba(255,255,255,0.08);
   border-radius: 9999px;
   font-family: 'JetBrains Mono', monospace;
