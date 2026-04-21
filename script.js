@@ -533,14 +533,56 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 3. GitHub Intelligence (Terminal) ---
     const terminalContent = document.getElementById('terminal-content');
     if (terminalContent) {
+        const GH_USER = 'runFast123';
+        const CACHE_KEY = `gh_data_${GH_USER}`;
+        const CACHE_TTL = 60 * 60 * 1000; // 1 hour
+
         const mockData = [
             { cmd: "git status", output: "On branch master\nYour branch is up to date with 'origin/master'." },
             { cmd: "cat recent_activity.log", output: "2024-12-19: Pushed 3 commits to 'portfolio-v2'\n2024-12-18: Merged PR #42 'Feature: AI Chatbot'\n2024-12-15: Created repository 'neural-network-from-scratch'" },
             { cmd: "whoami", output: "aman_dubey\nRole: Full Stack Python Developer\nLocation: Mumbai, IN" }
         ];
 
+        const fetchGitHub = async () => {
+            try {
+                const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || 'null');
+                if (cached && Date.now() - cached.ts < CACHE_TTL) return cached.data;
+
+                const [userRes, eventsRes, reposRes] = await Promise.all([
+                    fetch(`https://api.github.com/users/${GH_USER}`),
+                    fetch(`https://api.github.com/users/${GH_USER}/events/public?per_page=10`),
+                    fetch(`https://api.github.com/users/${GH_USER}/repos?sort=updated&per_page=5`)
+                ]);
+                if (!userRes.ok || !eventsRes.ok || !reposRes.ok) throw new Error('GitHub API error');
+
+                const user = await userRes.json();
+                const events = await eventsRes.json();
+                const repos = await reposRes.json();
+
+                const activityLines = events.slice(0, 3).map(e => {
+                    const date = new Date(e.created_at).toISOString().slice(0, 10);
+                    const type = e.type.replace('Event', '');
+                    return `${date}: ${type} on ${e.repo.name}`;
+                }).join('\n') || 'No recent public activity.';
+
+                const recentRepos = repos.slice(0, 3).map(r => `${r.name} (${r.language || 'n/a'}) - ${r.stargazers_count}★`).join('\n');
+
+                const data = [
+                    { cmd: `git log --author=${GH_USER} --oneline -3`, output: activityLines },
+                    { cmd: 'ls ~/repos --sort=updated', output: recentRepos || 'No public repositories.' },
+                    { cmd: 'whoami', output: `${user.login}\nName: ${user.name || 'N/A'}\nBio: ${user.bio || 'N/A'}\nRepos: ${user.public_repos}  Followers: ${user.followers}` }
+                ];
+
+                localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data }));
+                return data;
+            } catch (err) {
+                console.warn('GitHub API fetch failed, using mock data:', err);
+                return mockData;
+            }
+        };
+
         let step = 0;
-        
+
         const typeWriter = (text, element, speed = 30) => {
             return new Promise(resolve => {
                 let i = 0;
@@ -558,10 +600,10 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         const runTerminal = async () => {
-            // Clear initial mock if needed or just append
             terminalContent.innerHTML = '';
-            
-            for (const data of mockData) {
+            const ghData = await fetchGitHub();
+
+            for (const data of ghData) {
                 // Command line
                 const cmdLine = document.createElement('div');
                 cmdLine.className = 'cmd-line mb-2';
